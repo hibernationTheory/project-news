@@ -1,0 +1,25 @@
+{
+  "name": "create-react-app-custom",
+  "version": "0.0.1",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "npm-run-all": "^4.0.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.1",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "start-js": "HTTPS=true react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

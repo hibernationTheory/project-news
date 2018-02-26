@@ -1,0 +1,14 @@
+.App {
+  background: url('/assets/images/landing.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.input-field {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 200px;
+}

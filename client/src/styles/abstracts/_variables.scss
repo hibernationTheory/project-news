@@ -1,0 +1,37 @@
+/*
+Colors
+
+To keep this tidy, all color variable names should be in this format:
+  $[Prefix][Luminance Value][Suffix Letter (optional)]
+
+Here's the prefixes you can use:
+  blue, brown, gray, green, orange, purple, red, yellow
+
+Get the luminance by converting the hex value to HSL (see http://rgb.to/).
+The luminance value is the last percentage.
+
+Only use a suffix letter if there's another color with the same prefix + luminance.
+
+Don't set alpha values here.
+
+Don't add more prefixes. Don't start defining "cyan", and if you need pure black or
+pure white, there's already a CSS color variable for that. If you can't decide which
+prefix you need (e.g. is this blue or purple?), you're probably not the only one,
+so it doesn't matter which one you choose.
+*/
+
+$blue35: #01a3af; //hsl(184, 99%, 35%);
+
+/*
+* Icon Related
+*/
+
+
+/*
+* Font Related
+*/
+
+
+/*
+* Visual Style Related
+*/
