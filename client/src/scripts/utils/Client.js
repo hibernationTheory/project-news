@@ -1,11 +1,10 @@
 /* eslint-disable no-undef */
-function search(query, cb) {
-  return fetch(`api/headlines`, {
+export function get(url) {
+  return fetch(url, {
     accept: "application/json"
   })
     .then(checkStatus)
-    .then(parseJSON)
-    .then(cb);
+    .then(parseJSON);
 }
 
 function checkStatus(response) {
@@ -23,6 +22,3 @@ function parseJSON(response) {
   console.log(response);
   return response.json();
 }
-
-const Client = { search };
-export default Client;
