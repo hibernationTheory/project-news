@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
-import { RECEIVE_HEADLINES, RECEIVE_RESOURCES } from "../constants/actionTypes";
+import {
+  RECEIVE_HEADLINES,
+  RECEIVE_RESOURCES,
+  SEARCH_HEADLINES
+} from "../constants/actionTypes";
 
 const defaultState = {
   headlines: [],
-  resources: {}
+  resources: {},
+  searchQuery: ""
 };
 
 const newsReducer = (state = defaultState, action) => {
@@ -12,6 +17,8 @@ const newsReducer = (state = defaultState, action) => {
       return { ...state, headlines: action.payload };
     case RECEIVE_RESOURCES:
       return { ...state, resources: action.payload };
+    case SEARCH_HEADLINES:
+      return { ...state, searchQuery: action.payload };
     default:
       return state;
   }

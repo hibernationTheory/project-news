@@ -1,14 +1,13 @@
-.App {
-  background: url('/assets/images/landing.jpeg') no-repeat center center fixed;
-  background-size: cover;
-  overflow: hidden;
-  height: 100vh;
-  width: 100%;
-}
+.app {
+  // background: url('/assets/images/landing.jpeg') no-repeat center center fixed;
+  // background-size: cover;
+  // overflow: hidden;
+  // height: 100vh;
+  // width: 100%;
+  padding: 20px;
 
-.input-field {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-top: 200px;
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
 }

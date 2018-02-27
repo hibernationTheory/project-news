@@ -2,7 +2,8 @@ import {
   RECEIVE_HEADLINES,
   REQUEST_HEADLINES,
   RECEIVE_RESOURCES,
-  REQUEST_RESOURCES
+  REQUEST_RESOURCES,
+  SEARCH_HEADLINES
 } from "../constants/actionTypes";
 import { get } from "../utils/Client";
 
@@ -33,5 +34,12 @@ export function requestResourcesAction() {
     return get("api/resources").then(resources => {
       dispatch(receiveResourcesAction(resources));
     });
+  };
+}
+
+export function searchHeadlinesAction(input) {
+  return {
+    type: SEARCH_HEADLINES,
+    payload: input
   };
 }
