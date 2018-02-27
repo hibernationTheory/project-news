@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 function search(query, cb) {
-  return fetch(`api/test?q=${query}`, {
-    accept: 'application/json',
-  }).then(checkStatus)
+  return fetch(`api/headlines`, {
+    accept: "application/json"
+  })
+    .then(checkStatus)
     .then(parseJSON)
     .then(cb);
 }
@@ -19,6 +20,7 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
+  console.log(response);
   return response.json();
 }
 

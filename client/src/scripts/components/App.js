@@ -1,49 +1,44 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import { getHeadlinesAsyncAction } from "../actions";
 import Client from "../utils/Client";
+
+// class NewsItem extends Component {
+//   render() {
+//     return (
+//       <div className="newsbox-item">
+//         <div>{this.props.title}</div>
+//         <div>{this.props.description}</div>
+//       </div>
+//     );
+//   }
+// }
+
+// class NewsBox extends Component {
+//   render() {
+//     return <div className="newsbox" />;
+//   }
+// }
 
 /*
  *  App View Component
  */
 class App extends Component {
-  constructor(...props) {
-    super(...props);
-
-    this.state = {
-      value: "hello server"
-    };
-
-    this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onChange(evt) {
-    this.setState({
-      value: evt.target.value
-    });
-  }
-
-  onClick() {
-    const val = this.state.value;
-
-    Client.search(val).then(result => {
-      console.log(result);
-    });
+  componentDidMount() {
+    this.props.getHeadlines();
   }
 
   render() {
-    return (
-      <div className="App">
-        <div className="input-field">
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.onChange}
-          />
-          <button onClick={this.onClick.bind(this)}>Test API</button>
-        </div>
-      </div>
-    );
+    return <div className="App" />;
   }
 }
 
-export default App;
+const mapStateToProps = null;
+const mapDispatchToProps = dispatch => ({
+  getHeadlines: source => dispatch(getHeadlinesAsyncAction(source))
+});
+
+const AppConnected = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppConnected;
