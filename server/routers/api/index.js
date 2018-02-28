@@ -1,23 +1,23 @@
-const express = require('express');
+const express = require("express");
 
-const controllers = require('../../controllers/api');
+const controllers = require("../../controllers/api");
 
 const router = express.Router();
 
-router.get('/test', (req, res) => {
-  const param = req.query.q;
-  const result = controllers.getTestMessage();
+router.get("/headlines", (req, res) => {
+  controllers.getRecentHeadlinesAll().then(result => {
+    res.status(200).send(result);
+  });
+});
 
-  if (!param) {
-    res.json({
-      error: 'Missing required parameter `q`',
-    });
-    return;
-  } else {
-    res.json({
-      'data': result
-    });
-  }
+router.get("/resources", (req, res) => {
+  const resources = controllers.getResourceData();
+  res.status(200).send(resources);
+});
+
+router.get("/tags", (req, res) => {
+  const tags = controllers.getTags();
+  res.status(200).send(tags);
 });
 
 module.exports = router;

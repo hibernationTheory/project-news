@@ -1,9 +1,9 @@
 import {
   RECEIVE_HEADLINES,
-  REQUEST_HEADLINES,
   RECEIVE_RESOURCES,
-  REQUEST_RESOURCES,
-  SEARCH_HEADLINES
+  RECEIVE_TAGS,
+  SEARCH_HEADLINES,
+  SELECT_TAGS
 } from "../constants/actionTypes";
 import { get } from "../utils/Client";
 
@@ -37,9 +37,31 @@ export function requestResourcesAction() {
   };
 }
 
+function receiveTagsAction(tags) {
+  return {
+    type: RECEIVE_TAGS,
+    payload: tags
+  };
+}
+
+export function requestTagsAction() {
+  return dispatch => {
+    return get("api/tags").then(tags => {
+      dispatch(receiveTagsAction(tags));
+    });
+  };
+}
+
 export function searchHeadlinesAction(input) {
   return {
     type: SEARCH_HEADLINES,
     payload: input
+  };
+}
+
+export function selectTagsAction(selectedTags) {
+  return {
+    type: SELECT_TAGS,
+    payload: selectedTags
   };
 }

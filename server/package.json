@@ -11,7 +11,10 @@
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.17.2",
+    "dotenv": "^5.0.1",
     "express": "^4.15.4"
   }
 }

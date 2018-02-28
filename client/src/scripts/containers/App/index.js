@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 import {
   requestHeadlinesAction,
   requestResourcesAction,
-  searchHeadlinesAction
-} from "../actions";
-import Client from "../utils/Client";
+  searchHeadlinesAction,
+  requestTagsAction
+} from "../../actions";
+import Client from "../../utils/Client";
+
+import Tags from "../../components/Tags";
 
 class NewsItem extends Component {
   render() {
@@ -38,6 +41,7 @@ class App extends Component {
   componentDidMount = () => {
     this.props.requestHeadlines();
     this.props.requestResources();
+    this.props.requestTags();
   };
 
   _onChange = e => {
@@ -60,6 +64,7 @@ class App extends Component {
       // filter based on search query.
       searchQuery = searchQuery.toLowerCase();
       if (
+        searchQuery &&
         headline.description.toLowerCase().indexOf(searchQuery) < 0 &&
         headline.title.toLowerCase().indexOf(searchQuery) < 0
       ) {
@@ -69,31 +74,32 @@ class App extends Component {
       headlinesByResource[headline.source.id].push(headline);
     });
 
-    const headlinesByCategory = {};
+    const headlinesByIdeology = {};
     Object.keys(headlinesByResource).forEach(resource => {
-      const category = resources[resource].category;
-      if (!headlinesByCategory[category]) {
-        headlinesByCategory[category] = [];
+      const ideology = resources[resource].ideology;
+      if (!headlinesByIdeology[ideology]) {
+        headlinesByIdeology[ideology] = [];
       }
-      headlinesByCategory[category].push(...headlinesByResource[resource]);
+      headlinesByIdeology[ideology].push(...headlinesByResource[resource]);
     });
 
-    return headlinesByCategory;
+    return headlinesByIdeology;
   };
 
   render = () => {
-    const { searchQuery } = this.props;
-    const headlinesByCategory = this._processHeadlines(searchQuery);
+    const { searchQuery, tags } = this.props;
+    const headlinesByIdeology = this._processHeadlines(searchQuery);
 
     return (
       <div className="app">
         <input type="text" onChange={this._onChange} value={searchQuery} />
+        <Tags tags={tags} />
         <div className="app__body">
-          {headlinesByCategory.liberal && (
-            <NewsBox news={headlinesByCategory.liberal} />
+          {headlinesByIdeology.liberal && (
+            <NewsBox news={headlinesByIdeology.liberal} />
           )}
-          {headlinesByCategory.conservative && (
-            <NewsBox news={headlinesByCategory.conservative} />
+          {headlinesByIdeology.conservative && (
+            <NewsBox news={headlinesByIdeology.conservative} />
           )}
         </div>
       </div>
@@ -104,11 +110,13 @@ class App extends Component {
 const mapStateToProps = state => ({
   headlines: state.news.headlines,
   resources: state.news.resources,
-  searchQuery: state.news.searchQuery
+  searchQuery: state.news.searchQuery,
+  tags: state.news.tags
 });
 const mapDispatchToProps = dispatch => ({
   requestHeadlines: () => dispatch(requestHeadlinesAction()),
   requestResources: () => dispatch(requestResourcesAction()),
+  requestTags: () => dispatch(requestTagsAction()),
   searchHeadlines: input => dispatch(searchHeadlinesAction(input))
 });
 
