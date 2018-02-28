@@ -1,0 +1,15 @@
+$news-box-separation: 10px;
+
+.news-box {
+  border: 1px solid rgb(179, 179, 179);
+  padding: 20px;
+  width: 100%;
+
+  &:first-child {
+    margin-right: $news-box-separation;
+  }
+
+  &:last-child {
+    margin-left: $news-box-separation;
+  }
+}

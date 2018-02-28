@@ -10,7 +10,7 @@ class NewsBox extends Component {
       return <NewsItem key={url} title={title} description={description} />;
     });
 
-    return <div className="newsbox">{newsItems}</div>;
+    return <div className="news-box">{newsItems}</div>;
   }
 }
 

@@ -70,7 +70,9 @@ class App extends Component {
 
     return (
       <div className="app">
-        <input type="text" onChange={this._onChange} value={searchQuery} />
+        <div className="app__input">
+          <input type="text" onChange={this._onChange} value={searchQuery} />
+        </div>
         <Tags tags={tags} />
         <div className="app__body">
           {headlinesByIdeology.liberal && (

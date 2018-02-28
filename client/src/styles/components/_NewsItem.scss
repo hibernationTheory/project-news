@@ -1,0 +1,25 @@
+.news-item {
+  border: 1px solid rgb(196, 196, 196);
+  border-bottom-width: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  &__title {
+    color: rgb(95, 95, 95);
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__description {
+    color: rgb(46, 46, 46);
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    opacity: 0;
+    transition: 200ms opacity ease-in-out;
+  }
+
+  &:hover &__description {
+    opacity: 1;
+  }
+}
