@@ -9,30 +9,8 @@ import {
 } from "../../actions";
 import Client from "../../utils/Client";
 
+import NewsBox from "../../components/NewsBox";
 import Tags from "../../components/Tags";
-
-class NewsItem extends Component {
-  render() {
-    return (
-      <div className="newsbox-item">
-        <div>{this.props.title}</div>
-        <div>{this.props.description}</div>
-      </div>
-    );
-  }
-}
-
-class NewsBox extends Component {
-  render() {
-    const { news } = this.props;
-    const newsItems = news.map(newsItem => {
-      const { description, title, url } = newsItem;
-      return <NewsItem key={url} title={title} description={description} />;
-    });
-
-    return <div className="newsbox">{newsItems}</div>;
-  }
-}
 
 /*
  *  App View Component

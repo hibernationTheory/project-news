@@ -19,7 +19,6 @@ class Tags extends Component {
   };
 
   render() {
-    console.log(this.props.selectedTags);
     const { tags } = this.props;
     const tagItems = Object.keys(tags).map(tag => (
       <Tag key={tag} name={tag} onClick={() => this._handleClick(tag)} />
